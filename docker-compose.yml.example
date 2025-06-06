@@ -1,0 +1,28 @@
+services:
+  as-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: masdel/openvpn
+    restart: unless-stopped
+    env_file: .gateway.env
+    ports:
+      - 11094:1194/udp
+      - 11049:1149/tcp
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /opt/docker/ovpn/as-gateway:/opt/openvpn
+  net-only:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: masdel/openvpn
+    restart: unless-stopped
+    env_file: .net-only.env
+    ports:
+      - 11249:1149/tcp
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /opt/docker/ovpn/net-only:/opt/openvpn
