@@ -86,8 +86,9 @@ push \"topology subnet\"
 " >"${OVPN_DIR}"/route.conf
 
 # push \"route 172.17.0.0 255.255.0.0\"
+mkdir -p "${OVPN_DIR}"/iptables/
 groupadd openvpn
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-iptables-save >/etc/iptables/rules.v4
+iptables-save >"${OVPN_DIR}"/iptables/rules.v4
 
 echo "$(date +"%F %T") > server configuration ready"

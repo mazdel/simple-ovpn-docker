@@ -1,3 +1,15 @@
+networks:
+  nets:
+    ipam:
+      driver: default
+      config:
+        - subnet: '172.10.1.0/24'
+          gateway: '172.10.1.1'
+volumes:
+  as-gateway:
+  gw-indihome:
+  net-only:
+
 services:
   as-gateway:
     build:
@@ -13,6 +25,10 @@ services:
       - NET_ADMIN
     volumes:
       - /opt/docker/ovpn/as-gateway:/opt/openvpn
+      - as-gateway:/opt/easyrsa/
+    networks:
+      nets:
+        ipv4_address: 172.10.1.2
   net-only:
     build:
       context: .
@@ -26,3 +42,7 @@ services:
       - NET_ADMIN
     volumes:
       - /opt/docker/ovpn/net-only:/opt/openvpn
+      - net-only:/opt/easyrsa/
+    networks:
+      nets:
+        ipv4_address: 172.10.1.4

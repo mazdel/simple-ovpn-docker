@@ -26,7 +26,7 @@ if [[ "${OVPN_CLIENT_UNIQUE}" == 'true' ]]; then
     if [ -f "${OVPN_CLIENT_CCD}/${CLIENT_NAME}" ]; then
         echo "$(date +'%F %T') > config \"$(ls "${OVPN_CLIENT_CCD}/${CLIENT_NAME}")\" already exist"
     else
-        echo "" >"${OVPN_CLIENT_CCD}/${CLIENT_NAME}"
+        touch "${OVPN_CLIENT_CCD}/${CLIENT_NAME}"
         echo "$(date +'%F %T') > config \"$(ls "${OVPN_CLIENT_CCD}/${CLIENT_NAME}")\" created"
     fi
 

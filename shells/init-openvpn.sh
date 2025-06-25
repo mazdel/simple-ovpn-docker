@@ -6,7 +6,7 @@ chmod 600 /dev/net/tun
 ls -lh /dev/net
 echo "$(date +'%F %T') > tun device created"
 
-if [ ! -f "${EASYRSA_PKI}/ca.crt" ]; then
+if [ ! -f "${OVPN_DIR}/ca.crt" ]; then
     bash serverConfig.sh
     bash baseClientConfig.sh
     bash generateClient.sh
@@ -15,7 +15,7 @@ if [ ! -f "${EASYRSA_PKI}/ca.crt" ]; then
     echo "$(date +"%F %T") > all configuration done"
 fi
 
-iptables-restore </etc/iptables/rules.v4
+iptables-restore <"${OVPN_DIR}"/iptables/rules.v4
 openvpn --config "${OVPN_DIR}/server.conf"
 
 exec "$@"
