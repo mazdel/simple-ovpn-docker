@@ -82,7 +82,9 @@ fi
 echo "
 push \"route 192.168.3.0 255.255.255.0\"
 push \"route 192.168.7.0 255.255.255.0\"
+push \"route 192.192.1.0 255.255.255.0\"
 push \"topology subnet\"
+push \"route-metric 1000\"
 " >"${OVPN_DIR}"/route.conf
 
 # push \"route 172.17.0.0 255.255.0.0\"
