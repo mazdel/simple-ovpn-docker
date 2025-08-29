@@ -16,6 +16,8 @@ if [ ! -f "${OVPN_DIR}/ca.crt" ]; then
 fi
 
 iptables-restore <"${OVPN_DIR}"/iptables/rules.v4
+echo "Cleaning existing log file"
+echo "" >/var/log/openvpn/openvpn.log
 openvpn --config "${OVPN_DIR}/server.conf"
 
 exec "$@"
