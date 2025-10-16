@@ -38,7 +38,7 @@ group nogroup
 persist-key
 persist-tun
 status /var/log/openvpn/openvpn-status.log
-log-append  /var/log/openvpn/openvpn.log
+# log-append  /var/log/openvpn/openvpn.log
 verb 6" >"${OVPN_DIR}"/server.conf
 
 if [[ "${OVPN_CLIENT_COMPRESS}" == 'true' ]]; then
